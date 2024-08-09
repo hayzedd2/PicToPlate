@@ -2,7 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { inference } from "../../utils/huggingface";
-import type { AccurateData } from "../../types";
+import { AccurateData } from "@/types/type";
 
 const TextGenerator = ({
   accurateData,
