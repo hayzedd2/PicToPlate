@@ -122,7 +122,7 @@ const Upload = () => {
         {error && <div>Something went wrong, please try again</div>}
         {data && (
           <>
-            <div className="text-[1.1rem] mb-2 flex gap-3">
+            <div className="text-[1.1rem] mb-2 flex gap-3 xl:flex-nowrap sm:flex-wrap">
               <p className="flex gap-1">
                 Identified dish :
                 <span className="capitalize font-[600]">
@@ -134,6 +134,7 @@ const Upload = () => {
                 <span className="capitalize font-[600]">
                   {(Math.round(data.score * 10000) / 10000).toFixed(4)}
                 </span>
+  
               </p>
             </div>
             <TextGenerator accurateData={data} />
