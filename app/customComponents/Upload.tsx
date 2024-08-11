@@ -8,8 +8,10 @@ import TextGenerator from "./TextGenerator";
 import { Button } from "@/components/ui/button";
 import { LucideUpload } from "lucide-react";
 import { LuUpload } from "react-icons/lu";
-import { BsImages } from "react-icons/bs";
+import { BsCameraFill, BsImages } from "react-icons/bs";
 import Image from "next/image";
+import { IoCamera } from "react-icons/io5";
+import { toast } from "sonner";
 
 const Upload = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -64,7 +66,12 @@ const Upload = () => {
       setIsLoading(false);
     }
   };
-
+  const formatDishName = (name: string) => {
+    return name
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
   return (
     <section className="w-full">
       <div className="flex gap-2 pt-4 items-center justify-center">
@@ -76,12 +83,19 @@ const Upload = () => {
           className="hidden"
           ref={fileInputRef}
         />
-        <div
+        <button
+          className="p-3 rounded-sm bg-gray-200 cursor-pointer"
+          onClick={()=> toast("Coming soon :)")}
+        >
+          <BsCameraFill/>
+        </button>
+        <button
           className="p-3 rounded-sm bg-gray-200 cursor-pointer"
           id="image-input"
+          onClick={handleIconClick} 
         >
-          <BsImages onClick={handleIconClick} />
-        </div>
+          <BsImages />
+        </button>
 
         <Button
           onClick={handleImageClassification}
@@ -108,7 +122,20 @@ const Upload = () => {
         {error && <div>Something went wrong, please try again</div>}
         {data && (
           <>
-            <p className="text-[1.1rem]">Identified dish : <span className="capitalize font-[600]">{data.label}</span></p>
+            <div className="text-[1.1rem] mb-2 flex gap-3">
+              <p className="flex gap-1">
+                Identified dish :
+                <span className="capitalize font-[600]">
+                  {formatDishName(data.label)}
+                </span>
+              </p>
+              <p className="flex gap-1">
+                Accuracy :
+                <span className="capitalize font-[600]">
+                  {(Math.round(data.score * 10000) / 10000).toFixed(4)}
+                </span>
+              </p>
+            </div>
             <TextGenerator accurateData={data} />
           </>
         )}
