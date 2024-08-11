@@ -122,7 +122,7 @@ const Upload = () => {
         {error && <div>Something went wrong, please try again</div>}
         {data && (
           <>
-            <div className="text-[1.1rem] mb-2 flex gap-3 xl:flex-nowrap sm:flex-wrap">
+            <div className="text-[1.1rem] border mb-2 flex sm:flex-col xl:flex-row gap-3 xl:flex-nowrap sm:flex-wrap">
               <p className="flex gap-1">
                 Identified dish :
                 <span className="capitalize font-[600]">
