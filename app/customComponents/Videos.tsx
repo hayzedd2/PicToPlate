@@ -15,6 +15,7 @@ const Videos = ({ query }: { query: string }) => {
         `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=${API_KEY}`
       );
       const data = await response.json();
+      console.log(data)
       setVideos(data.items);
     };
 
