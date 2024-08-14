@@ -6,11 +6,9 @@ import { useState } from "react";
 import { AccurateData } from "@/types/type";
 import TextGenerator from "./TextGenerator";
 import { Button } from "@/components/ui/button";
-import { LucideUpload } from "lucide-react";
 import { LuUpload } from "react-icons/lu";
 import { BsCameraFill, BsImages } from "react-icons/bs";
 import Image from "next/image";
-import { IoCamera } from "react-icons/io5";
 import { toast } from "sonner";
 
 const Upload = () => {
@@ -61,6 +59,7 @@ const Upload = () => {
         setError(err.message);
       } else {
         setError("An unknown error occurred.");
+        console.log(error)
       }
     } finally {
       setIsLoading(false);
@@ -122,7 +121,7 @@ const Upload = () => {
         {error && <div>Something went wrong, please try again</div>}
         {data && (
           <>
-            <div className="text-[1.1rem] border mb-2 flex sm:flex-col xl:flex-row gap-3 xl:flex-nowrap sm:flex-wrap">
+            <div className="text-[1.1rem] mb-2 flex sm:flex-col xl:flex-row sm:gap-1 items-center justify-center xl:gap-3 sm:flex-wrap">
               <p className="flex gap-1">
                 Identified dish :
                 <span className="capitalize font-[600]">

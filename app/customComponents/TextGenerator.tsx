@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { inference } from "../../utils/huggingface";
 import { AccurateData } from "@/types/type";
+import Videos from "./Videos";
 
 const TextGenerator = ({
   accurateData,
@@ -33,33 +34,35 @@ const TextGenerator = ({
       max_tokens: 1000,
     });
 
-    const formattedText = response?.choices[0]?.message?.content?.split('\n')
-    .map(line => {
-      if (line.endsWith('**')) {
-        return `<strong>${line.replace(/^\*\*\s*|\*\*$/g, '')}</strong>`;
-      } else if (line.startsWith('*')) {
-        return `<li>${line.replace(/^\*\s*/, '')}</li>`;
-      } else if(line.startsWith('**') && (line.endsWith('**'))){
-        return `<strong>${line.replace(/^\*\*\s*|\*\*$/g, '')}</strong>`;
-      }else {
-        return `<p>${line}</p>`;
-        
-      }
-    })
-    .join('');
+    const formattedText = response?.choices[0]?.message?.content
+      ?.split("\n")
+      .map((line) => {
+        if (line.endsWith("**")) {
+          return `<strong>${line.replace(/^\*\*\s*|\*\*$/g, "")}</strong>`;
+        } else if (line.startsWith("*")) {
+          return `<li>${line.replace(/^\*\s*/, "")}</li>`;
+        } else if (line.startsWith("**") && line.endsWith("**")) {
+          return `<strong>${line.replace(/^\*\*\s*|\*\*$/g, "")}</strong>`;
+        } else {
+          return `<p>${line}</p>`;
+        }
+      })
+      .join("");
     setGeneratedText(formattedText!);
     setIsGenerating(false);
   };
 
   return (
-    <div>
-      {isGenerating ? (
-        <div>Generating instructions...</div>
-      ) : (
-        <div
-          dangerouslySetInnerHTML={{ __html: generatedText }}
-          style={{ whiteSpace: "pre-wrap" }}
-        />
+    <div className="w-full items-center justify-center flex flex-col">
+      {isGenerating && <div>Generating instructions...</div>}
+      {generatedText && (
+        <>
+          <div
+            dangerouslySetInnerHTML={{ __html: generatedText }}
+            style={{ whiteSpace: "pre-wrap" }}
+          />
+          <Videos query={accurateData!.label} />
+        </>
       )}
     </div>
   );

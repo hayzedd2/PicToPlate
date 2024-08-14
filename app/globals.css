@@ -62,7 +62,6 @@
     --chart-5: 340 75% 55%;
   }
 }
-
 @layer base {
   * {
     @apply border-border;
@@ -74,4 +73,10 @@
 
 strong{
   @apply my-1
+}
+.indicator::-webkit-scrollbar {
+  display: none;
+}
+.indicator {
+  scrollbar-width: none;
 }

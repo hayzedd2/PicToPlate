@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Newsreader } from "next/font/google";
+import { Montserrat, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+// const newsReader = Newsreader({ subsets: ["latin"], display: "swap" });
 const newsReader = Newsreader({ subsets: ["latin"], display: "swap" });
 export const metadata: Metadata = {
   title: "PicToPlate",
@@ -17,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={newsReader.className}>
         <main>{children}</main>
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );
