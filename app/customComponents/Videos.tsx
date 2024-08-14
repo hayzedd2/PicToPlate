@@ -27,16 +27,20 @@ const Videos = ({ query }: { query: string }) => {
         <strong>Suggested videos: </strong>
       </div>
       <div className="flex gap-2 mt-2 indicator overflow-scroll mx-auto">
-        {videos.map((video, id) => (
-          <div key={id}>
-            <iframe
-              className="rounded-[12px] w-[11rem] h-[7rem]"
-              src={`https://www.youtube.com/embed/${video.id.videoId}`}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            ></iframe>
-          </div>
-        ))}
+        {videos && videos.length > 0 ? (
+          videos.map((video, id) => (
+            <div key={id}>
+              <iframe
+                className="rounded-[12px] w-[11rem] h-[7rem]"
+                src={`https://www.youtube.com/embed/${video.id.videoId}`}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              ></iframe>
+            </div>
+          ))
+        ) : (
+          <p>No videos found</p>
+        )}
       </div>
     </section>
   );
