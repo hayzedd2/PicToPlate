@@ -10,6 +10,7 @@ import { LuUpload } from "react-icons/lu";
 import { BsCameraFill, BsImages } from "react-icons/bs";
 import Image from "next/image";
 import { toast } from "sonner";
+import Caution from "./Caution";
 
 const Upload = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -105,6 +106,7 @@ const Upload = () => {
           <LuUpload className="text-[0.95rem] mt-[-0.25rem]" />
         </Button>
       </div>
+      <Caution/>
       <div className="w-full flex items-center pt-2 justify-center">
         {imageUrl ? (
           <Image
