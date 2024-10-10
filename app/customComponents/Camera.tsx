@@ -38,6 +38,7 @@ const CameraCapture = ({ onImageCapture }: ImageCaptureProps) => {
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
     const ctx = canvas.getContext("2d");
+    if(!ctx) return
     ctx?.drawImage(videoRef.current, 0, 0);
     canvas.toBlob((blob) => {
       if (blob) {
@@ -45,7 +46,8 @@ const CameraCapture = ({ onImageCapture }: ImageCaptureProps) => {
         onImageCapture(file);
         stopCamera();
       }
-    }, "image/jpeg");
+    }, "image/jpeg", 0.8);
+    
   };
 
   useEffect(() => {

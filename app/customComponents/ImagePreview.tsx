@@ -17,7 +17,6 @@ export const ImagePreview = ({ state }: ImagePreviewProps) => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
-
   return (
     <div className="space-y-4">
       <div className="w-full flex items-center pt-2 justify-center">

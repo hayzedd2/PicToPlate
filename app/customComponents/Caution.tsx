@@ -9,7 +9,7 @@ import { div } from "framer-motion/client";
 const Caution = () => {
   const messages = [
     "AI may provide inaccurate result",
-    "Please only upload a meal picture",
+    "Please only upload a picture of a meal",
     "Ensure accuracy is greater than 0.6",
   ];
   const [currMessage, setCurrMessage] = useState(0);
