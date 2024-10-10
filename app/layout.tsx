@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Montserrat, Newsreader } from "next/font/google";
+import {Newsreader } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
-// const newsReader = Newsreader({ subsets: ["latin"], display: "swap" });
 const newsReader = Newsreader({ subsets: ["latin"], display: "swap" });
 export const metadata: Metadata = {
   title: "PicToPlate",
