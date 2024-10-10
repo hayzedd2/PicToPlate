@@ -56,13 +56,13 @@ const TextGenerator = ({
     <div className="w-full items-center justify-center flex flex-col">
       {isGenerating && <div>Generating instructions...</div>}
       {generatedText && (
-        <>
+        <div className="flex flex-col gap-1 w-full">
           <div
             dangerouslySetInnerHTML={{ __html: generatedText }}
             style={{ whiteSpace: "pre-wrap" }}
           />
           <Videos query={accurateData!.label} />
-        </>
+        </div>
       )}
     </div>
   );

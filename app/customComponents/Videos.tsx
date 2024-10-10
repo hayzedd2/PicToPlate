@@ -15,7 +15,7 @@ const Videos = ({ query }: { query: string }) => {
         `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=${API_KEY}`
       );
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       setVideos(data.items);
     };
 
@@ -27,22 +27,22 @@ const Videos = ({ query }: { query: string }) => {
       <div className="heading mt-3">
         <strong>Suggested videos: </strong>
       </div>
-      <div className="flex gap-2 mt-2 indicator overflow-scroll mx-auto">
-        {videos && videos.length > 0 ? (
-          videos.map((video, id) => (
-            <div key={id}>
-              <iframe
-                className="rounded-[12px] w-[11rem] h-[7rem]"
-                src={`https://www.youtube.com/embed/${video.id.videoId}`}
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              ></iframe>
-            </div>
-          ))
-        ) : (
-          <p>No videos found</p>
-        )}
-      </div>
+      <div className="w-full  flex-wrap flex gap-2 mt-1 overflow-hidden">
+          {videos && videos.length > 0 ? (
+            videos.map((video, id) => (
+              <div key={id}>
+                <iframe
+                  className="rounded-[12px] w-[10rem] h-[6rem]"
+                  src={`https://www.youtube.com/embed/${video.id.videoId}`}
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
     </section>
   );
 };
