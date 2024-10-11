@@ -8,7 +8,6 @@ const CameraCapture = ({ onImageCapture }: ImageCaptureProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [isCameraActive, setIsCameraActive] = useState(false);
-
   const startCamera = async () => {
     try {
       setIsCameraActive(true);
@@ -39,7 +38,7 @@ const CameraCapture = ({ onImageCapture }: ImageCaptureProps) => {
     canvas.height = videoRef.current.videoHeight;
     const ctx = canvas.getContext("2d");
     if(!ctx) return
-    ctx?.drawImage(videoRef.current, 0, 0);
+    ctx.drawImage(videoRef.current, 0, 0);
     canvas.toBlob((blob) => {
       if (blob) {
         const file = new File([blob], "capture.jpg", { type: "image/jpeg" });

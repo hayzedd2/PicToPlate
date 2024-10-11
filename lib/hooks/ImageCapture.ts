@@ -50,8 +50,7 @@ export const useImageCapture = () => {
       );
       console.log(result)
       console.log(accurateData)
-      updateState({ data: result });
-      updateState({accurateData : accurateData})
+      updateState({ data: result, accurateData});
     } catch (error) {
       updateState({ error: "Failed to process image" });
     } finally {

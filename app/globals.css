@@ -80,3 +80,16 @@ strong{
 .indicator {
   scrollbar-width: none;
 }
+
+@keyframes rotate-fast {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(1turn);
+  }
+}
+.spinner{
+  animation: rotate-fast 0.25s linear infinite;
+}
