@@ -6,7 +6,7 @@ interface VideoItem {
 }
 const Videos = ({ query }: { query: string }) => {
   const [videos, setVideos] = useState<VideoItem[]>([]);
-  const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+  const API_KEY = process.env.YOUTUBE_API_KEY;
   const searchQuery = `how to prepare ${query}`;
 
   useEffect(() => {
