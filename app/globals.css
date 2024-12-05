@@ -103,6 +103,10 @@
 }
 
 
-::selection{
+.selectable-text::selection{
   background-color: #CCFBF1;
+}
+
+.overlay{
+  backdrop-filter: blur(2px);
 }

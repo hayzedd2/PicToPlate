@@ -20,6 +20,13 @@ export type UploadState = {
   clearError: () => void;
 };
 
+export type ModalState = {
+  isOpen: boolean;
+  openModal: () => void;
+  closeModal : ()=> void
+
+}
+
 export interface PopupPosition {
   x: number;
   y: number;

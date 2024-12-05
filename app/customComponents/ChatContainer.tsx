@@ -1,9 +1,12 @@
 "use client";
 import { Message, useChat } from "ai/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loading from "./Loading";
 import { generateGradient } from "@/helpers/generateGradient";
 import TextHighlighter from "./TextHighlighter";
+import ChatError from "./ChatError";
+import Modal from "./Modal";
+import { useModalStore } from "@/lib/hooks/useModalStore";
 
 interface ChatProps {
   messages: Message[];
@@ -12,6 +15,8 @@ interface ChatProps {
 }
 const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState("");
+  const OpenModal = useModalStore((state) => state.openModal);
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -20,7 +25,6 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
-
   return (
     <div className="w-full flex flex-col mb-24 md:px-0 gap-4 ">
       {messages.map((m) => (
@@ -40,6 +44,7 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
                   className="w-7 h-7 shrink-0 rounded-full"
                 ></div>
               )}
+
               <div className="flex flex-col">
                 <div>
                   {m?.experimental_attachments
@@ -47,15 +52,21 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
                       attachment?.contentType?.startsWith("image/")
                     )
                     .map((attachment, index) => (
-                      <div
-                        key={`${m.id}-${index}`}
-                        className="w-full flex gap-2 items-end justify-end rounded-md p-1 "
-                      >
-                        <img
-                          src={attachment.url}
-                          className="bx-shadow-light w-[40px] rounded-sm bx-shadow-light  h-[40px] object-cover"
-                          alt={attachment.name ?? `attachment-${index}`}
-                        />
+                      <div>
+                        <button
+                          key={`${m.id}-${index}`}
+                          onClick={() => {
+                            setSelectedImage(attachment.url);
+                            OpenModal();
+                          }}
+                          className="w-full flex gap-2 items-end justify-end rounded-md p-1 "
+                        >
+                          <img
+                            src={attachment.url}
+                            className="bx-shadow-light w-[40px] rounded-sm bx-shadow-light  h-[40px] object-cover"
+                            alt={attachment.name ?? `attachment-${index}`}
+                          />
+                        </button>
                       </div>
                     ))}
                 </div>
@@ -74,8 +85,15 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
           </div>
         </div>
       ))}
+      <Modal>
+        <img
+          src={selectedImage}
+          className="w-[20rem] bx-shadow rounded-[20px] h-[18rem]  object-cover"
+          alt=""
+        />
+      </Modal>
       {isLoading ? <Loading /> : null}
-      {error ? `${error.message}` : null}
+      {error ? <ChatError /> : null}
       <div ref={messagesEndRef} />
     </div>
   );
