@@ -52,9 +52,8 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
                       attachment?.contentType?.startsWith("image/")
                     )
                     .map((attachment, index) => (
-                      <div>
+                      <div key={`${m.id}-${index}`}>
                         <button
-                          key={`${m.id}-${index}`}
                           onClick={() => {
                             setSelectedImage(attachment.url);
                             OpenModal();
