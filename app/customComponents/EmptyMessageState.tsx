@@ -17,7 +17,7 @@ const EmptyMessageState = ({
       fromSuggestion.current = true;
       handleInputChange({ target: { value: suggestion } } as any);
     },
-    [handleInputChange, handleSubmit]
+    [handleInputChange]
   );
   useEffect(() => {
     if (fromSuggestion.current && input.startsWith("How to make ")) {
