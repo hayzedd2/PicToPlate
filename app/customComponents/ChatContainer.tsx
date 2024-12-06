@@ -41,7 +41,7 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
               {m.role == "assistant" && (
                 <div
                   style={{
-                    background: generateGradient(5),
+                    background: generateGradient(8),
                   }}
                   className="w-7 h-7 shrink-0 rounded-full"
                 ></div>
@@ -72,7 +72,7 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
                     ))}
                 </div>
                 <div
-                  className={`whitespace-pre-wrap relative text-[15px] leading-2  ${
+                  className={`whitespace-pre-wrap relative text-[16px] leading-2  ${
                     m.role === "user"
                       ? "bg-[#f3f3f3] py-2  rounded-[20px] px-4 "
                       : "text-black selectable-text"

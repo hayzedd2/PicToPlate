@@ -52,7 +52,7 @@ const InputContainer = ({
               <input
                 value={input}
                 onChange={handleInputChange}
-                className="md:w-[600px] resize-none  border-none outline-none "
+                className="md:w-[600px] resize-none h-full w-full  border-none outline-none "
                 placeholder={`${
                   messages.length > 0 ? "Ask a follow up" : "Ask about a dish"
                 }`}
