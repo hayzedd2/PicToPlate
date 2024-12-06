@@ -7,6 +7,7 @@ import TextHighlighter from "./TextHighlighter";
 import ChatError from "./ChatError";
 import Modal from "./Modal";
 import { useModalStore } from "@/lib/hooks/useModalStore";
+import AfterMessageActions from "./AfterMessageActions";
 
 interface ChatProps {
   messages: Message[];
@@ -25,6 +26,7 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+  console.log(messages)
   return (
     <div className="w-full flex flex-col mb-24 md:px-0 gap-4 ">
       {messages.map((m) => (
@@ -79,6 +81,9 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
                   {m.role == "assistant" && <TextHighlighter />}
                   {m.content}
                 </div>
+                {m.role == "assistant" && !isLoading && (
+                  <AfterMessageActions text={m.content} />
+                )}
               </div>
             </div>
           </div>

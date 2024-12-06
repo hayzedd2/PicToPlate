@@ -4,6 +4,7 @@ import ChatContainer from "./customComponents/ChatContainer";
 import InputContainer from "./customComponents/InputContainer";
 import EmptyMessageState from "./customComponents/EmptyMessageState";
 import Navbar from "./customComponents/Navbar";
+import AfterMessageActions from "./customComponents/AfterMessageActions";
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
     useChat();
@@ -23,6 +24,7 @@ export default function Home() {
             handleInputChange={handleInputChange}
           />
         )}
+
         <ChatContainer
           isLoading={isLoading}
           messages={messages}

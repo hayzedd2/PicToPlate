@@ -8,7 +8,7 @@ export const generateSpeech = async (text: string) => {
   const response = await deepgram.speak.request(
     { text },
     {
-      model: "aura-stella-en",
+      model: "aura-luna-en",
       encoding: "linear16",
       container: "wav",
     }

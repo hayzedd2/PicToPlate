@@ -1,7 +1,7 @@
 "use client";
 
 import { useFileStore } from "@/lib/hooks/useFileStore";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Upload from "./Upload";
 import CameraCapture from "./Camera";
 import { IoArrowUp } from "react-icons/io5";
@@ -17,6 +17,7 @@ const InputContainer = ({
 }: InputControllerProps) => {
   const { file, resetUpload } = useFileStore();
   const [fileList, setFileList] = useState<FileList | undefined>(undefined);
+  const textareaRef = useRef(null);
   React.useEffect(() => {
     if (file) {
       const dataTransfer = new DataTransfer();
@@ -28,6 +29,7 @@ const InputContainer = ({
   const isSubmitDisabled = (): boolean => {
     return isLoading || input.length < 2;
   };
+
   return (
     <div className=" fixed left-1/2 transform px-3 -translate-x-1/2 bottom-5 z-10 w-full md:w-max">
       <div className="md:w-max w-full flex flex-col bg-white  items-start h-max  rounded-[20px] bx-shadow-light mx-auto">
@@ -48,10 +50,9 @@ const InputContainer = ({
           >
             <div className="h-full w-full mb-3 mt-1">
               <input
-                type="text"
                 value={input}
                 onChange={handleInputChange}
-                className="md:w-[600px] w-full h-full border-none outline-none "
+                className="md:w-[600px] resize-none  border-none outline-none "
                 placeholder={`${
                   messages.length > 0 ? "Ask a follow up" : "Ask about a dish"
                 }`}
@@ -60,9 +61,9 @@ const InputContainer = ({
             <div className="w-full flex justify-between items-center">
               <div className="flex gap-4">
                 <Upload />
-               <div className="hidden md:flex">
-               <CameraCapture />
-               </div>
+                <div className="hidden md:flex">
+                  <CameraCapture />
+                </div>
               </div>
               <button
                 className="rounded-full text-white px-2 py-2 disabled:pointer-events-none disabled:opacity-50 b flex items-center justify-center  bg-black"

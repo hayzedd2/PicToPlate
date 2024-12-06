@@ -6,6 +6,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -109,4 +110,12 @@
 
 .overlay{
   backdrop-filter: blur(2px);
+}
+
+textarea{
+  --padding : 4px;
+  min-height: calc(1lh + 2 * var(--padding));
+  max-height: calc(4lh + 2 * var(--padding));
+
+  padding: var(--padding);
 }

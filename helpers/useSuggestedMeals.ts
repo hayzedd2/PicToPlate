@@ -8,7 +8,6 @@ const useSuggestedMeals = () => {
     const randomMeals: string[] = getRandomMeals(8);
     setMeals(randomMeals);
   }, []);
-
   return meals;
 };
 
