@@ -7,7 +7,7 @@ export const useAudioPlayback = () => {
   const createAudio = useCallback(() => {
     const timestamp = Date.now();
     const audio = new Audio(`/sounds/generatedSpeech.mp3?t=${timestamp}`);
-    audio.crossOrigin = "anonymous"
+    audio.crossOrigin = "anonymous" 
     audio.onended = () => {
       setIsPlaying(false);
     };
