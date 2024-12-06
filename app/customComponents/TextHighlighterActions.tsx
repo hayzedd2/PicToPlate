@@ -19,8 +19,7 @@ const TextHighlighterActions = ({
   const { playAudio } = useAudioPlayback();
   const handlePlaySound = async () => {
     setPosition(null);
-    await generateSpeech(selectedText);
-    playAudio();
+    playAudio(selectedText);
   };
   return (
     <div

@@ -24,7 +24,7 @@ export default function Home() {
             handleInputChange={handleInputChange}
           />
         )}
-        <AfterMessageActions text="Hello love" />
+        {/* <AfterMessageActions text="Hello love" /> */}
         <ChatContainer
           isLoading={isLoading}
           messages={messages}

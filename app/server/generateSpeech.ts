@@ -13,21 +13,10 @@ export const generateSpeech = async (text: string) => {
       container: "wav",
     }
   );
-
   const stream = await response.getStream();
-  const fileName = "./public/sounds/generatedspeech.mp3";
-  if (stream) {
-    const buffer = await getAudioBuffer(stream);
-    fs.writeFile(fileName, buffer, (err) => {
-      if (err) {
-        console.error("Error writing audio to file:", err);
-      } else {
-        console.log("Audio file written to", fileName);
-      }
-    });
-  } else {
-    console.error("Error generating audio:", stream);
-  }
+  const buffer = getAudioBuffer(stream as ReadableStream<Uint8Array>);
+
+  return buffer;
 };
 
 const getAudioBuffer = async (response: ReadableStream<Uint8Array>) => {

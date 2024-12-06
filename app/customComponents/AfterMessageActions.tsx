@@ -15,8 +15,7 @@ import useSound from "use-sound";
 const AfterMessageActions = ({ text }: { text: string }) => {
   const { playAudio, isPlaying, stopAudio } = useAudioPlayback();
   const handlePlaySound = async () => {
-    await generateSpeech(text);
-    playAudio();
+    playAudio(text);
   };
   return (
     <div className="w-max my-3 py-2 text-[18px] px-2 gap-4  flex items-center justify-center">
