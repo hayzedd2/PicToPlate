@@ -6,7 +6,7 @@ export const useAudioPlayback = () => {
 
   const createAudio = useCallback(() => {
     const timestamp = Date.now();
-    const audio = new Audio(`/sounds/generatedSpeech.wav?t=${timestamp}`);
+    const audio = new Audio(`/sounds/generatedSpeech.mp3?t=${timestamp}`);
     audio.onended = () => {
       setIsPlaying(false);
     };

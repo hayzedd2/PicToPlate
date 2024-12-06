@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient, SpeakRestClient } from "@deepgram/sdk";
+import { createClient } from "@deepgram/sdk";
 import fs from "fs";
 
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
@@ -15,8 +15,7 @@ export const generateSpeech = async (text: string) => {
   );
 
   const stream = await response.getStream();
-  const headers = await response.getHeaders();
-  const fileName = "./public/sounds/generatedspeech.wav";
+  const fileName = "./public/sounds/generatedspeech.mp3";
   if (stream) {
     const buffer = await getAudioBuffer(stream);
     fs.writeFile(fileName, buffer, (err) => {

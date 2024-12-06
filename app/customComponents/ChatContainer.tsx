@@ -26,7 +26,6 @@ const ChatContainer = ({ messages, isLoading, error }: ChatProps) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
-  console.log(messages)
   return (
     <div className="w-full flex flex-col mb-24 md:px-0 gap-4 ">
       {messages.map((m) => (
