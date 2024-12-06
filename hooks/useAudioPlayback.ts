@@ -1,31 +1,35 @@
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState } from "react";
 
 export const useAudioPlayback = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const createAudio = useCallback(async () => {
+    try {
+      // Fetch audio file directly
+      const response = await fetch(
+        `/sounds/generatedSpeech.mp3?t=${Date.now()}`
+      );
+      if (!response.ok) throw new Error("Audio fetch failed");
+      const blob = await response.blob();
+      const audio = new Audio(URL.createObjectURL(blob));
 
-  const createAudio = useCallback(() => {
-    const timestamp = Date.now();
-    const audio = new Audio(`/sounds/generatedSpeech.mp3?t=${timestamp}`);
-    audio.crossOrigin = "anonymous" 
-    audio.onended = () => {
-      setIsPlaying(false);
-    };
-    audio.onerror = (err) => {
-      console.error("Error playing audio");
-      console.log(err)
-      setIsPlaying(false);
-    };
-    return audio;
+      audio.onended = () => setIsPlaying(false);
+      return audio;
+    } catch (err) {
+      console.error("Audio creation failed:", err);
+      return null;
+    }
   }, []);
 
-  const playAudio = useCallback(() => {
+  const playAudio = useCallback(async () => {
     if (audioRef.current) {
-      audioRef.current.play();
+      await audioRef.current.play();
     } else {
-      const audio = createAudio();
-      audioRef.current = audio;
-      audio.play();
+      const audio = await createAudio();
+      if (audio) {
+        audioRef.current = audio;
+        await audio.play();
+      }
     }
     setIsPlaying(true);
   }, [createAudio]);
