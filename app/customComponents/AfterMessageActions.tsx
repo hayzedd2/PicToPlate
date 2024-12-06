@@ -10,6 +10,7 @@ import { useAudioPlayback } from "@/hooks/useAudioPlayback";
 import { LuCopy } from "react-icons/lu";
 import { copyText } from "@/helpers/copyText";
 import { toast } from "sonner";
+import useSound from "use-sound";
 
 const AfterMessageActions = ({ text }: { text: string }) => {
   const { playAudio, isPlaying, stopAudio } = useAudioPlayback();
