@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import ImagePreviewError from "./ImagePreviewError";
+import { formatFileSize } from "@/helpers/formatFileSize";
 
 const SmallImagePreview = () => {
   const { imageUrl, file, resetUpload, error } = useFileStore();
@@ -46,7 +47,7 @@ const SmallImagePreview = () => {
                   <div className="flex  rounded-tr-sm rounded-br-sm  flex-col h-full px-2">
                     <p className="text-[12px]">{file.name.slice(0, 15)}</p>
                     <p className="text-[12px]">
-                      {Number(file.size / 1000).toFixed(2)}kb
+                      {formatFileSize(file.size)}
                     </p>
                   </div>
                 </div>
@@ -55,7 +56,7 @@ const SmallImagePreview = () => {
             <TooltipContent className="flex p-0 items-start justify-start w-full bg-white">
               <div className="p-1 rounded-md">
                 <img
-                  className="rounded-md w-[200px] h-[150px]"
+                  className="rounded-md w-[200px] h-[150px] object-cover"
                   src={imageUrl}
                   alt="Tooltip-image"
                 />
